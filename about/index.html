@@ -158,5 +158,37 @@
 
 <!-- giscus Comments-->
 
+  <script type="text/javascript" >
+      var giscus_repo = 'oumaizi/wenjing.github.io';
+      var giscus_repo_id = 'R_kgDOJA0nRQ';
+      var giscus_category = 'Announcements';
+      var giscus_category_id = 'DIC_kwDOJA0nRc4CUXnK';
+      var giscus_mapping = 'pathname';
+      var giscus_theme = 'light';
+      var giscus_reactions_enabled = '1';
+      var giscus_lang = 'en';
+
+      (function(){
+        var script = document.createElement('script');
+
+        script.src = "https://giscus.app/client.js";
+        script.setAttribute('data-repo', giscus_repo);
+        script.setAttribute('data-repo-id', giscus_repo_id);
+        script.setAttribute('data-category', giscus_category);
+        script.setAttribute('data-category-id', giscus_category_id);
+        script.setAttribute('data-mapping', giscus_mapping);
+        script.setAttribute('data-strict', "0");
+        script.setAttribute('data-reactions-enabled', giscus_reactions_enabled);
+        script.setAttribute('data-emit-metadata', "0")
+        script.setAttribute('data-input-position', "top")
+        script.setAttribute('data-theme', giscus_theme);
+        script.setAttribute('data-lang', giscus_lang);
+        script.setAttribute('data-loading', 'lazy');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        (document.getElementById('giscus_thread')).appendChild(script);
+      }())
+  </script>
+
 </body>
 </html>
