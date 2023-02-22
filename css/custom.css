@@ -1,0 +1,22 @@
+@font-face {
+  font-family: UntitledSans;
+  src: url("../lib/untitledSans/UntitledSans-Regular.otf");
+  src: url("../lib/untitledSans/UntitledSans-Regular.otf") format('opentype');
+  font-weight: normal;
+}
+@font-face {
+  font-family: UntitledSans;
+  src: url("../lib/untitledSans/UntitledSans-Bold.otf");
+  src: url("../lib/untitledSans/UntitledSans-Bold.otf") format('opentype');
+  font-weight: bold;
+}
+@font-face {
+  font-family: UntitledSans;
+  src: url("../lib/untitledSans/UntitledSans-Light.otf");
+  src: url("../lib/untitledSans/UntitledSans-Light.otf") format('opentype');
+  font-weight: 300;
+}
+.custom {
+  font-family: UntitledSans, sans-serif;
+  direction: rtl;
+}
