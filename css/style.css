@@ -635,45 +635,45 @@ body {
   background-size: 50px 50px;
   background-repeat: no-repeat;
 }
-#nav {
+#header #nav {
   color: #1bcaa4;
   letter-spacing: 0.01em;
   font-weight: 500;
   font-style: normal;
   font-size: 1rem;
 }
-#nav ul {
+#header #nav ul {
   margin: 0;
   margin-top: 5px;
   padding: 0;
   list-style-type: none;
   line-height: 15px;
 }
-#nav ul a {
+#header #nav ul a {
   margin-right: 15px;
   color: #1bcaa4;
 }
-#nav ul a:hover {
+#header #nav ul a:hover {
   background-image: linear-gradient(transparent, transparent 5px, #1bcaa4 5px, #1bcaa4);
   background-position: bottom;
   background-size: 100% 6px;
   background-repeat: repeat-x;
 }
-#nav ul li {
+#header #nav ul li {
   display: inline-block;
   margin-right: 15px;
   border-right: 1px dotted;
   border-color: #1bcaa4;
   vertical-align: middle;
 }
-#nav ul .icon {
+#header #nav ul .icon {
   display: none;
 }
-#nav ul li:last-child {
+#header #nav ul li:last-child {
   margin-right: 0;
   border-right: 0;
 }
-#nav ul li:last-child a {
+#header #nav ul li:last-child a {
   margin-right: 0;
 }
 @media screen and (max-width: 480px) {
