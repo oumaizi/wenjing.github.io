@@ -158,5 +158,34 @@
 
 <!-- giscus Comments-->
 
+  <script type="text/javascript">
+      let giscus_repo = 'oumaizi/wenjing.github.io';
+      let giscus_repo_id = 'R_kgDOJA0nRQ';
+      let giscus_category = 'General';
+      let giscus_category_id = 'DIC_kwDOJA0nRc4CUXnL';
+      let giscus_mapping = 'pathname';
+      let giscus_theme = 'light';
+      let giscus_reactions_enabled = '0';
+      let giscus_lang = 'en';
+
+      (function(){
+        let script = document.createElement('script');
+        console.log(script);
+        script.src = "https://giscus.app/client.js";
+        script.setAttribute('data-repo', giscus_repo);
+        script.setAttribute('data-repo-id', giscus_repo_id);
+        script.setAttribute('data-category', giscus_category);
+        script.setAttribute('data-category-id', giscus_category_id);
+        script.setAttribute('data-mapping', giscus_mapping);
+        script.setAttribute('data-strict', "0");
+        script.setAttribute('data-reactions-enabled', giscus_reactions_enabled);
+        script.setAttribute('data-emit-metadata', "0")
+        script.setAttribute('data-theme', giscus_theme);
+        script.setAttribute('data-lang', giscus_lang);
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+      }())
+  </script>
+
 </body>
 </html>
