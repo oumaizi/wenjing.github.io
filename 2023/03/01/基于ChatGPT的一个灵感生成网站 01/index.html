@@ -84,6 +84,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" aria-label="Previous post" href="/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" aria-label="Next post" href="/2023/02/23/WebGL%E5%AD%A6%E4%B9%A0%2001%20-%2002/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -212,7 +214,7 @@
 
     </div>
     <div id="toc">
-      
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Update-2023Mar11"><span class="toc-number">1.</span> <span class="toc-text">Update - 2023Mar11</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -275,6 +277,22 @@
 <li>基于词语生成Pompt，向API发送请求</li>
 <li>返回结果到用户界面</li>
 </ul>
+<h1 id="Update-2023Mar11"><a href="#Update-2023Mar11" class="headerlink" title="Update - 2023Mar11"></a>Update - 2023Mar11</h1><p>今天简单尝试了下一些提示语，发现返回的结果都过于通用，像是车轱辘话来回说。对于一名设计师，当我搜寻一些具体话题相关灵感的时候，我希望是得到一个具体的设计师，以及他相关的资料。另外一个雷点是，返回的答案中有一些参考资料是AI杜撰的，这对于一个需要参考的用户来说是十分致命的。</p>
+<p>![[CleanShot 2023-03-11 at 03.00.35.png]]</p>
+<p>基于此，该类的提问需要更为精确的答案，我搜索了下，发现ChatGPT官方提供了一个补充措施叫做<a target="_blank" rel="noopener" href="https://github.com/openai/openai-cookbook/blob/main/examples/Question_answering_using_embeddings.ipynb">Embeddings</a>，通过额外的语义数据库来提供更加精确的回答。所以需要去找一些内容进行语义的训练，目前的想法是先试试去爬取<a target="_blank" rel="noopener" href="https://www.itsnicethat.com/search?tags=Work&tags=Graphic+Design">It’s Nice That</a>中关于平面设计的文章去训练，然后基于该数据库进行测试。</p>
+<p>所以目前需要做的事情是：</p>
+<ul>
+<li>写爬虫<ul>
+<li>爬取文章</li>
+<li>并根据该<a target="_blank" rel="noopener" href="https://github.com/openai/openai-cookbook/blob/c3b920f123a9c92c30b106462b5d5ecf53a4b3ab/examples/fine-tuned_qa/olympics-1-collect-data.ipynb">文章</a> 进行数据分类</li>
+</ul>
+</li>
+<li>测试如何在ChatGPT中调用</li>
+<li>设计开发网页<ul>
+<li>桌面优先</li>
+</ul>
+</li>
+</ul>
 
   </div>
 </article>
@@ -308,7 +326,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Update-2023Mar11"><span class="toc-number">1.</span> <span class="toc-text">Update - 2023Mar11</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <script async defer data-website-id="47b07e4e-cbb6-428f-acbe-f278f7ccf076" src="https://view.liuwenjing.net/umami.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="DifferenceFalsy nil, false  → Elixir  false, 0, -0, 0n, &quot;&quot;, null, undefined, NaN → JS  Default Parameter1def hello(name \\ default_value) do: ... end   1function hello(name&#x3D;default_value) &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wenjing Liu">
+<meta property="og:url" content="http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/index.html">
+<meta property="og:site_name" content="Wenjing Liu">
+<meta property="og:description" content="DifferenceFalsy nil, false  → Elixir  false, 0, -0, 0n, &quot;&quot;, null, undefined, NaN → JS  Default Parameter1def hello(name \\ default_value) do: ... end   1function hello(name&#x3D;default_value) &amp;#">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-05-30T14:33:08.248Z">
+<meta property="article:modified_time" content="2023-05-30T15:16:09.991Z">
+<meta property="article:author" content="Wenjing Liu">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Wenjing Liu</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="Wenjing Liu" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://liuwenjing.net">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/03/01/%E5%9F%BA%E4%BA%8EChatGPT%E7%9A%84%E4%B8%80%E4%B8%AA%E7%81%B5%E6%84%9F%E7%94%9F%E6%88%90%E7%BD%91%E7%AB%99%2001/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/"
+            ><i
+                class="fab fa-facebook "
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&text="
+            ><i
+                class="fab fa-twitter "
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&title="
+            ><i
+                class="fab fa-linkedin "
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&is_video=false&description="
+            ><i
+                class="fab fa-pinterest "
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            href="mailto:?subject=&body=Check out this article: http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/"
+            ><i
+                class="fas fa-envelope "
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&title="
+            ><i
+                class="fab fa-get-pocket "
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&title="
+            ><i
+                class="fab fa-reddit "
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&title="
+            ><i
+                class="fab fa-stumbleupon "
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&title="
+            ><i
+                class="fab fa-digg "
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&name=&description="
+            ><i
+                class="fab fa-tumblr "
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&t="
+            ><i
+                class="fab fa-hacker-news "
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Difference"><span class="toc-number">1.</span> <span class="toc-text">Difference</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Falsy"><span class="toc-number">1.0.1.</span> <span class="toc-text">Falsy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Default-Parameter"><span class="toc-number">1.0.2.</span> <span class="toc-text">Default Parameter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Strict-And-Non-Strict-Operators"><span class="toc-number">1.0.3.</span> <span class="toc-text">Strict And Non-Strict Operators</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Immutable-Data"><span class="toc-number">1.0.4.</span> <span class="toc-text">Immutable Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Else-If"><span class="toc-number">1.0.5.</span> <span class="toc-text">Else-If</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Atoms"><span class="toc-number">1.0.6.</span> <span class="toc-text">Atoms</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tuples"><span class="toc-number">1.0.7.</span> <span class="toc-text">Tuples</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Equal"><span class="toc-number">1.0.8.</span> <span class="toc-text">Equal  &#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List-Operator"><span class="toc-number">1.0.9.</span> <span class="toc-text">List Operator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Keyword-Lists"><span class="toc-number">1.0.10.</span> <span class="toc-text">Keyword Lists</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maps-and-Objects"><span class="toc-number">1.0.11.</span> <span class="toc-text">Maps and Objects</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Underscore"><span class="toc-number">1.0.12.</span> <span class="toc-text">Underscore</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Same"><span class="toc-number">2.</span> <span class="toc-text">Same</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Wenjing Liu</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-05-30T14:33:08.248Z" itemprop="datePublished">2023-05-30</time>
+        
+        (Updated: <time datetime="2023-05-30T15:16:09.991Z" itemprop="dateModified">2023-05-30</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Difference"><a href="#Difference" class="headerlink" title="Difference"></a>Difference</h1><h3 id="Falsy"><a href="#Falsy" class="headerlink" title="Falsy"></a>Falsy</h3><ul>
+<li><code>nil, false</code>  → Elixir </li>
+<li><code>false, 0, -0, 0n, &quot;&quot;, null, undefined, NaN</code> → JS</li>
+</ul>
+<h3 id="Default-Parameter"><a href="#Default-Parameter" class="headerlink" title="Default Parameter"></a>Default Parameter</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span></span>(name \\ default_value) <span class="symbol">do:</span> ... <span class="keyword">end</span> </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">hello</span>(<span class="params">name=default_value</span>) &#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Strict-And-Non-Strict-Operators"><a href="#Strict-And-Non-Strict-Operators" class="headerlink" title="Strict And Non-Strict Operators"></a>Strict And Non-Strict Operators</h3><ul>
+<li><code>and, or, not</code> → Only use with <strong>booleans</strong> </li>
+<li><code>&amp;&amp;, ||</code> → Non-Strict</li>
+</ul>
+<h3 id="Immutable-Data"><a href="#Immutable-Data" class="headerlink" title="Immutable Data"></a>Immutable Data</h3><ul>
+<li>instead of mutating the data, we <strong>rebind</strong> the variable to new data<ul>
+<li>?? where is the new data</li>
+</ul>
+</li>
+</ul>
+<h3 id="Else-If"><a href="#Else-If" class="headerlink" title="Else-If"></a>Else-If</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cond</span> <span class="keyword">do</span></span><br><span class="line">	num &gt; <span class="number">0</span> -&gt; <span class="string">&quot;positive&quot;</span></span><br><span class="line">	num &lt; <span class="number">0</span> -&gt; <span class="string">&quot;negative&quot;</span></span><br><span class="line">	<span class="literal">true</span> -&gt; <span class="string">&quot;0&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;postive&quot;</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (num &lt; <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;negative&quot;</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;0&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Atoms"><a href="#Atoms" class="headerlink" title="Atoms"></a>Atoms</h3><ul>
+<li>Atoms are named <em>constants</em>. In other words, their name is their value.</li>
+<li><code>:atoms</code></li>
+<li>Why?<ul>
+<li>One primary reason is <em>performance</em>. Atoms are stored in an <strong>atom table</strong> and can be referenced by a key. This makes it way faster to check if two atoms are equa.</li>
+</ul>
+</li>
+<li><code>nil, false, true</code> are atoms</li>
+</ul>
+<h3 id="Tuples"><a href="#Tuples" class="headerlink" title="Tuples"></a>Tuples</h3><ul>
+<li>Tuples are intended as <em>fixed-size containers</em> for multiple elements. To manipulate a collection of elements, use a list instead. <a href="dfile:///Users/liuwenjing/Library/Application%20Support/Dash/DocSets/Elixir/Elixir.docset/Contents/Resources/Documents/docs/elixir/Enum.html"><code>Enum</code></a> functions do not work on tuples.</li>
+<li><strong>it’s common in Elixir to use tuples to represent failure or success cases with the associated error message or success value.</strong></li>
+</ul>
+<h3 id="Equal"><a href="#Equal" class="headerlink" title="Equal  ="></a>Equal  <code>=</code></h3><ul>
+<li>In Elixir, the <code>=</code> sign is the <em>match operator</em> → <code>Pattern Matching</code></li>
+<li>In JS, <code>=</code> is the assignment operator .</li>
+<li>Use an <code>_</code> to ignore any variables.</li>
+</ul>
+<h3 id="List-Operator"><a href="#List-Operator" class="headerlink" title="List Operator"></a>List Operator</h3><ul>
+<li>Merge List<ul>
+<li><code>[1,2,3] ++ [4,5,6] #Elixir</code></li>
+<li><code>[1,2,3].concat([4,5,6]) //JS</code></li>
+</ul>
+</li>
+<li>Subtract matching elements from a list<ul>
+<li><code>[1,2,3] -- [2,3] #Elixir</code></li>
+<li><code>[1,2,3].filter(el =&gt; ![2,3].includes(el)) // JS</code></li>
+</ul>
+</li>
+<li>List operations evaluate from <em>right to left.</em></li>
+<li>Prepending<ul>
+<li><code>[1 | [2,3]] #Elixir</code></li>
+<li><code>[2,3].unshift(1) //JS</code></li>
+<li>Cannot append a number using similar syntax<code>[[1,2] | 3] -&gt; NOT AVAIABLE</code></li>
+</ul>
+</li>
+<li>Get the first elements &#x2F; last elements<ul>
+<li><code>[head | _tail] = [1,2,3]</code> -&gt; head is <code>[1]</code> &#x2F; tail is <code>[2,3]</code></li>
+<li>&#96;let list &#x3D; [1,2,3]; head &#x3D; list[0];</li>
+</ul>
+</li>
+</ul>
+<h3 id="Keyword-Lists"><a href="#Keyword-Lists" class="headerlink" title="Keyword Lists"></a>Keyword Lists</h3><ul>
+<li>a <strong>key-value data structure</strong> guarantee order. They are performant for small amounts of data, but less performant for large amounts of data than maps.</li>
+<li>Keys in a keyword list do not have to be <em>unique</em>.</li>
+<li>Accessing a key -&gt; <code>list[:atom]</code>  -&gt; <code>[name: &quot;Wiki&quot;][:name] // &quot;Wiki&quot;</code></li>
+</ul>
+<h3 id="Maps-and-Objects"><a href="#Maps-and-Objects" class="headerlink" title="Maps and Objects"></a>Maps and Objects</h3><ul>
+<li><em>Keys in a map must be unique</em>. Also unlike keyword lists, maps also do not guarantee key order.</li>
+<li><code>map = %&#123;:name =&gt; &quot;Wenjing&quot;&#125;</code></li>
+<li><code>let obj = &#123;name: &quot;Wenjing&quot;&#125;</code></li>
+<li><ul>
+<li><a target="_blank" rel="noopener" href="https://elixirschool.com/en/lessons/basics/collections#keyword-lists-5">Collections · Elixir School</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Underscore"><a href="#Underscore" class="headerlink" title="Underscore"></a>Underscore</h3><ul>
+<li>The underscore <code>_</code> is used as a placeholder for a value that is not going to be used. It is often used in pattern matching to ignore certain parts of a value.</li>
+</ul>
+<h1 id="Same"><a href="#Same" class="headerlink" title="Same"></a>Same</h1><ul>
+<li>Capital letters are always less than lowercase letters regardless of alphabetical order. → <code>&quot;Z&quot; &lt; &quot;a&quot; //true</code></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+
+    <div class="blog-post-comments">
+        <div id="giscus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://liuwenjing.net">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Difference"><span class="toc-number">1.</span> <span class="toc-text">Difference</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Falsy"><span class="toc-number">1.0.1.</span> <span class="toc-text">Falsy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Default-Parameter"><span class="toc-number">1.0.2.</span> <span class="toc-text">Default Parameter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Strict-And-Non-Strict-Operators"><span class="toc-number">1.0.3.</span> <span class="toc-text">Strict And Non-Strict Operators</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Immutable-Data"><span class="toc-number">1.0.4.</span> <span class="toc-text">Immutable Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Else-If"><span class="toc-number">1.0.5.</span> <span class="toc-text">Else-If</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Atoms"><span class="toc-number">1.0.6.</span> <span class="toc-text">Atoms</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tuples"><span class="toc-number">1.0.7.</span> <span class="toc-text">Tuples</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Equal"><span class="toc-number">1.0.8.</span> <span class="toc-text">Equal  &#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List-Operator"><span class="toc-number">1.0.9.</span> <span class="toc-text">List Operator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Keyword-Lists"><span class="toc-number">1.0.10.</span> <span class="toc-text">Keyword Lists</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maps-and-Objects"><span class="toc-number">1.0.11.</span> <span class="toc-text">Maps and Objects</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Underscore"><span class="toc-number">1.0.12.</span> <span class="toc-text">Underscore</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Same"><span class="toc-number">2.</span> <span class="toc-text">Same</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/"
+            ><i
+                class="fab fa-facebook fa-lg"
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&text="
+            ><i
+                class="fab fa-twitter fa-lg"
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&title="
+            ><i
+                class="fab fa-linkedin fa-lg"
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&is_video=false&description="
+            ><i
+                class="fab fa-pinterest fa-lg"
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            href="mailto:?subject=&body=Check out this article: http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/"
+            ><i
+                class="fas fa-envelope fa-lg"
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&title="
+            ><i
+                class="fab fa-get-pocket fa-lg"
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&title="
+            ><i
+                class="fab fa-reddit fa-lg"
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&title="
+            ><i
+                class="fab fa-stumbleupon fa-lg"
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&title="
+            ><i
+                class="fab fa-digg fa-lg"
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&name=&description="
+            ><i
+                class="fab fa-tumblr fa-lg"
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+    <li>
+        <a
+            class="icon"
+            target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/05/30/Elixir%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%2001%20-%20The%20differences%20and%20commons%20between%20Javascript%20and%20Elixir/&t="
+            ><i
+                class="fab fa-hacker-news fa-lg"
+                aria-hidden="true"
+            ></i
+        ></a>
+    </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022-2023
+    Wenjing Liu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://liuwenjing.net">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+  <script async defer data-website-id="47b07e4e-cbb6-428f-acbe-f278f7ccf076" src="https://view.liuwenjing.net/umami.js"></script>
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+
+<!-- giscus Comments-->
+
+  <script type="text/javascript" >
+      var giscus_repo = 'oumaizi/wenjing.github.io';
+      var giscus_repo_id = 'R_kgDOJA0nRQ';
+      var giscus_category = 'Announcements';
+      var giscus_category_id = 'DIC_kwDOJA0nRc4CUXnK';
+      var giscus_mapping = 'pathname';
+      var giscus_theme = 'light';
+      var giscus_reactions_enabled = '1';
+      var giscus_lang = 'en';
+
+      (function(){
+        var script = document.createElement('script');
+
+        script.src = "https://giscus.app/client.js";
+        script.setAttribute('data-repo', giscus_repo);
+        script.setAttribute('data-repo-id', giscus_repo_id);
+        script.setAttribute('data-category', giscus_category);
+        script.setAttribute('data-category-id', giscus_category_id);
+        script.setAttribute('data-mapping', giscus_mapping);
+        script.setAttribute('data-strict', "0");
+        script.setAttribute('data-reactions-enabled', giscus_reactions_enabled);
+        script.setAttribute('data-emit-metadata', "0")
+        script.setAttribute('data-input-position', "top")
+        script.setAttribute('data-theme', giscus_theme);
+        script.setAttribute('data-lang', giscus_lang);
+        script.setAttribute('data-loading', 'lazy');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+        (document.getElementById('giscus_thread')).appendChild(script);
+      }())
+  </script>
+
+</body>
+</html>
